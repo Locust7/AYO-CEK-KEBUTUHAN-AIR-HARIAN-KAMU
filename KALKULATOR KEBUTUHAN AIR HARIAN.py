@@ -80,15 +80,19 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-        # TIPS
-        st.markdown("<h4 style='color:#FF69B4;'>✨ Tips Hidrasi Sehat:</h4>", unsafe_allow_html=True)
-        st.markdown("""
-        - 🕗 Minum segelas air saat bangun tidur.  
-        - 🥗 Konsumsi buah tinggi air: semangka, melon, jeruk.  
-        - ⏰ Gunakan aplikasi pengingat minum.  
-        - 🧊 Minum air dingin saat cuaca panas.  
-        - 🚰 Bawa tumbler ke mana pun kamu pergi.
-        """)
+      # TIPS
+st.markdown("<h4 style='color:#FF69B4;'>✨ Tips Hidrasi Sehat:</h4>", unsafe_allow_html=True)
+st.markdown("""
+<div class='highlight-box'>
+    <ul>
+        <li>🕗 Minum segelas air segera setelah bangun tidur.</li>
+        <li>🥗 Konsumsi buah tinggi air seperti <b>semangka, melon, dan jeruk</b>.</li>
+        <li>⏰ Gunakan aplikasi pengingat minum secara berkala.</li>
+        <li>🧊 Minum air dingin saat cuaca panas untuk menyegarkan tubuh.</li>
+        <li>🚰 Selalu bawa <b>tumbler</b> ke mana pun kamu pergi.</li>
+    </ul>
+</div>
+""", unsafe_allow_html=True)
     else:
         st.warning("Masukkan berat badan yang valid terlebih dahulu.")
 # FOOTER
