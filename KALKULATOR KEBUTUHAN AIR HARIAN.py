@@ -59,12 +59,13 @@ if st.button("💦 Hitung Kebutuhan Air"):
         total = hitung_air(berat, aktivitas, cuaca, jenis_kelamin, usia)
         st.markdown(f"<h3 style='color: #007ACC;'>🌊 Kamu butuh sekitar <span style='color:#FF4500;'>{total:.2f} liter</span> air per hari!</h3>", unsafe_allow_html=True)
 
-        # KATEGORI REKOMENDASI
-        if total < 1.5:
-           elif total >= 1.5 and total < 2.5:
+       # KATEGORI REKOMENDASI
+if total < 1.5:
+    st.markdown("<div class='highlight-box' style='background-color:#fff8f0; border-color:#f0cba8;'>⚠ <b>Rendah:</b> Tambahkan lebih banyak air saat beraktivitas.</div>", unsafe_allow_html=True)
+elif total >= 1.5 and total < 2.5:
     st.markdown("<div class='highlight-box' style='background-color:#f0fff0; border-color:#a0d6b4;'>✅ <b>Cukup:</b> Pertahankan kebiasaan hidrasi kamu.</div>", unsafe_allow_html=True)
-        else:
-            st.markdown("<div class='highlight-box' style='background-color:#e6f7ff; border-color:#8acde3;'>💪 <b>Tinggi:</b> Sangat aktif? Pastikan kamu bawa botol ke mana pun!</div>", unsafe_allow_html=True)
+else:
+    st.markdown("<div class='highlight-box' style='background-color:#e6f7ff; border-color:#8acde3;'>💪 <b>Tinggi:</b> Sangat aktif? Pastikan kamu bawa botol ke mana pun!</div>", unsafe_allow_html=True)
 
         # INFO ILMIAH
         st.markdown("<h4 style='color:#20B2AA;'>📘 Dasar Ilmiah:</h4>", unsafe_allow_html=True)
