@@ -1,27 +1,3 @@
-kalkulator_air/
-│
-├── home.py
-├── kalkulator.py
-└── .streamlit/
-    └── config.toml
-st.markdown("""
-<style>
-    .highlight-box {
-        background-color: #f0f9ff;
-        padding: 15px;
-        border-radius: 10px;
-        border: 1px solid #add8e6;
-    }
-</style>
-""", unsafe_allow_html=True)
-
-# Navigation
-st.markdown("<div class='highlight-box'><b>Menu:</b></div>", unsafe_allow_html=True)
-st.markdown("[➡ Kalkulator Kebutuhan Air](kalkulator.py)")
-
-# FOOTER
-st.markdown("---")
-st.markdown("<p style='text-align: center; color: grey;'>Proyek Streamlit oleh: <b>IFTA, NADILA, VANIA, DAVIONA, SULTHAN</b></p>", unsafe_allow_html=True)
 import streamlit as st
 
 st.set_page_config(page_title="💧 Kalkulator Kebutuhan Air Harian", layout="centered")
