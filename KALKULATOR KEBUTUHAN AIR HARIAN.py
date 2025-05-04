@@ -93,7 +93,7 @@ st.markdown("""
     </ul>
 </div>
 """, unsafe_allow_html=True)
-else:
+ else:
     st.warning("Masukkan berat badan yang valid terlebih dahulu.")
 # FOOTER
 st.markdown("---")
