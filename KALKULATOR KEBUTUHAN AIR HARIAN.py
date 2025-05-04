@@ -94,7 +94,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 else:
- st.warning("Masukkan berat badan yang valid terlebih dahulu.")
+    st.warning("Masukkan berat badan yang valid terlebih dahulu.")
 # FOOTER
 st.markdown("---")
 st.markdown("<p style='text-align: center; color: grey;'>Proyek Streamlit oleh: <b>IFTA, NADILA, VANIA, DAVIONA, SULTHAN</b></p>", unsafe_allow_html=True)            st.markdown("<div class='highlight-box' style='background-color:#fff8f0; border-color:#f0cba8;'>⚠ <b>Rendah:</b> Tambahkan lebih banyak air saat beraktivitas.</div>", unsafe_allow_html=True)
