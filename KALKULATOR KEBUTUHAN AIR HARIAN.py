@@ -67,16 +67,18 @@ elif total >= 1.5 and total < 2.5:
 else:
     st.markdown("<div class='highlight-box' style='background-color:#e6f7ff; border-color:#8acde3;'>💪 <b>Tinggi:</b> Sangat aktif? Pastikan kamu bawa botol ke mana pun!</div>", unsafe_allow_html=True)
 
-        # INFO ILMIAH
-        st.markdown("<h4 style='color:#20B2AA;'>📘 Dasar Ilmiah:</h4>", unsafe_allow_html=True)
-        st.markdown("""
-        <ul>
-            <li>Rata-rata: 30-35 ml/kg/hari menurut WHO & EFSA.</li>
-            <li>Kondisi panas & aktivitas tinggi meningkatkan kebutuhan cairan.</li>
-            <li>Pria lebih banyak air karena komposisi otot & massa tubuh.</li>
-            <li>Anak-anak biasanya butuh lebih sedikit kecuali sangat aktif.</li>
-        </ul>
-        """, unsafe_allow_html=True)
+       # INFO ILMIAH
+st.markdown("<h4 style='color:#20B2AA;'>📘 Dasar Ilmiah:</h4>", unsafe_allow_html=True)
+st.markdown("""
+<div class='highlight-box'>
+    <ul>
+        <li>Rata-rata kebutuhan air: <b>30–35 ml/kg berat badan per hari</b> (sumber: WHO & EFSA).</li>
+        <li><b>Cuaca panas</b> dan <b>aktivitas fisik tinggi</b> meningkatkan kehilangan cairan lewat keringat.</li>
+        <li><b>Pria</b> cenderung membutuhkan lebih banyak air karena proporsi massa otot yang lebih tinggi.</li>
+        <li><b>Anak-anak</b> butuh lebih sedikit air, kecuali mereka sangat aktif.</li>
+    </ul>
+</div>
+""", unsafe_allow_html=True)
 
         # TIPS
         st.markdown("<h4 style='color:#FF69B4;'>✨ Tips Hidrasi Sehat:</h4>", unsafe_allow_html=True)
