@@ -61,7 +61,7 @@ if st.button("💦 Hitung Kebutuhan Air"):
 
         # KATEGORI REKOMENDASI
         if total < 1.5:
-  elif 1.5 <= total <= 2.5:
+            elif total >= 1.5 and total <= 2.5:
             st.markdown("<div class='highlight-box' style='background-color:#f0fff0; border-color:#a0d6b4;'>✅ <b>Cukup:</b> Pertahankan kebiasaan hidrasi kamu.</div>", unsafe_allow_html=True)
         else:
             st.markdown("<div class='highlight-box' style='background-color:#e6f7ff; border-color:#8acde3;'>💪 <b>Tinggi:</b> Sangat aktif? Pastikan kamu bawa botol ke mana pun!</div>", unsafe_allow_html=True)
