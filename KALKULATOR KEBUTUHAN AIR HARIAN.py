@@ -8,7 +8,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-image: url("https://images.unsplash.com/photo-1528825871115-3581a5387919");
+        background-image: url("https://unsplash.com/photos/clear-drinking-glass-on-white-table-rCzy18K9hq0");
         background-size: cover;
         background-attachment: fixed;
         background-position: center;
@@ -44,18 +44,18 @@ st.markdown("""
 st.markdown("<div class='highlight-box'><b>Isi dulu datanya yaa, biar tahu kamu butuh berapa galon! 😄</b></div>", unsafe_allow_html=True)
 
 berat = st.number_input("⚖ Berat badan kamu (kg):", min_value=1.0, step=0.5)
-aktivitas = st.selectbox("💃 Seberapa aktif kamu hari ini?", ["Mager Banget 😴", "Cukup Gerak 🧘", "Lari Kejar Bus 🏃‍♂️💨"])
+aktivitas = st.selectbox("💃 Seberapa aktif kamu hari ini?", ["Gamau kerjain laprak 😴", "Cukup banyak praktik 🧘", "Lari Kejar deadline laprak 🏃‍♂️💨"])
 cuaca = st.selectbox("☀️ Cuaca di luar gimana?", ["❄️ Dingin Brrrr", "🌤 Normal Aja", "🔥 Panas Terik!"])
-jenis_kelamin = st.selectbox("🚻 Jenis kelamin kamu apa?", ["👦 Cowok", "👧 Cewek"])
+jenis_kelamin = st.selectbox("🚻 Jenis kelamin kamu apa?", ["👦 Laki-laki", "👧 Perempuan"])
 usia = st.number_input("🎂 Umur kamu (biar nggak salah ngitung):", min_value=1, max_value=120, step=1)
 
 # Fungsi perhitungan lucu
 def hitung_air(berat, aktivitas, cuaca, jenis_kelamin, usia):
     dasar = berat * 30
 
-    if aktivitas == "Cukup Gerak 🧘":
+    if aktivitas == "Cukup banyak praktik 🧘":
         dasar += 300
-    elif aktivitas == "Lari Kejar Bus 🏃‍♂️💨":
+    elif aktivitas == "Lari Kejar deadline laprak 🏃‍♂️💨":
         dasar += 600
 
     if cuaca == "🔥 Panas Terik!":
@@ -63,7 +63,7 @@ def hitung_air(berat, aktivitas, cuaca, jenis_kelamin, usia):
     elif cuaca == "❄️ Dingin Brrrr":
         dasar -= 200
 
-    if jenis_kelamin == "👦 Cowok":
+    if jenis_kelamin == "👦 Laki-laki":
         dasar += 200
     else:
         dasar -= 100
@@ -87,22 +87,22 @@ if st.button("🧃 Hitung Berapa Kamu Harus Minum Hari Ini!"):
             st.markdown("<div class='highlight-box' style='background-color:#e0f7ff;'>💪 <b>Hidrasi Sultan!</b> Kamu aktif banget, keren! Bawa botol air terus ya!</div>", unsafe_allow_html=True)
 
         # Tips lucu
-        st.markdown("<h4 style='color:#20B2AA;'>✨ Tips dari para pinguin profesional:</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='color:#20B2AA;'>✨ Tips dari para profesional H2Oni:</h4>", unsafe_allow_html=True)
         st.markdown("""
         <div class='highlight-box'>
             <ul>
-                <li>🐣 Minum segelas air setelah bangun tidur biar nggak ngelantur.</li>
+                <li>🐣 Minum segelas air setelah bangun tidur biar nggak ngelantur pas praktik.</li>
                 <li>🍉 Makan buah-buahan berair seperti semangka dan jeruk, biar pipimu makin segar!</li>
-                <li>⏰ Pasang alarm minum biar nggak lupa pas scroll TikTok terus.</li>
-                <li>🚰 Bawa botol lucu ke mana pun, biar gayamu makin kece & sehat!</li>
+                <li>⏰ Pasang alarm minum biar nggak lupa pas lagi kerjain laprak.</li>
+                <li>🚰 Bawa botol tumblr ke mana pun, agar mengurangi limbah plastik!</li>
             </ul>
         </div>
         """, unsafe_allow_html=True)
     else:
-        st.warning("Masukkan berat badan yang valid dulu yaa~")
+        st.warning("Masukkan berat badan yang valid dulu yaa jangan bohongg~")
 
 # FOOTER lucu
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: grey;'>🐬 Dibuat oleh tim <b>Hydra Squad™</b> yang haus ide & air 💡💧</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: grey;'>🐬 Dibuat oleh tim <b>LPK 7 Daviona, Ifta, Nadila, Vania, Sulthan</b> yang haus ide & air 💡💧</p>", unsafe_allow_html=True)
 
 
