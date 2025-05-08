@@ -1,3 +1,17 @@
+# Tambahkan latar belakang menggunakan CSS
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-image: url("https://images.unsplash.com/photo-1505740420928-5e560c06d30e");
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 import streamlit as st
 
 st.set_page_config(page_title="💧 Kalkulator Kebutuhan Air Harian", layout="centered")
