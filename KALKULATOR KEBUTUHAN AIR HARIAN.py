@@ -1,19 +1,20 @@
 import streamlit as st
 
-st.set_page_config(page_title="💧 Kalkulator Kebutuhan Air Harian", layout="centered")
+# Konfigurasi halaman
+st.set_page_config(page_title="🐧 Kalkulator Minum Air Harian Lucu", layout="centered")
 
-# Tambahkan background gambar bertema air
+# Background tema air
 st.markdown(
     """
     <style>
     .stApp {
-        background-image: url("https://images.unsplash.com/photo-1501594907352-04cda38ebc29");
+        background-image: url("https://images.unsplash.com/photo-1528825871115-3581a5387919");
         background-size: cover;
         background-attachment: fixed;
         background-position: center;
     }
     .block-container {
-        background-color: rgba(255, 255, 255, 0.85);
+        background-color: rgba(255, 255, 255, 0.88);
         padding: 2rem;
         border-radius: 15px;
     }
@@ -22,49 +23,47 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# HEADER
-st.markdown("<h1 style='text-align: center; color: #00BFFF;'>💧 Kalkulator Kebutuhan Air Harian</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; font-size: 18px;'>Tentukan berapa liter air yang kamu butuhkan setiap hari agar tetap sehat dan bertenaga!</p>", unsafe_allow_html=True)
+# HEADER lucu
+st.markdown("<h1 style='text-align: center; color: #00CFFF;'>🐧💦 Berapa Banyak Air yang Harus Kamu Minum Hari Ini?</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 18px;'>Biar nggak jadi kaktus kering, yuk hitung kebutuhan air kamu hari ini! 🌵➡️💧</p>", unsafe_allow_html=True)
 
-# STYLE TAMBAHAN
+# Gaya tambahan
 st.markdown("""
 <style>
-    .big-font {
-        font-size:20px !important;
-        color: #4B0082;
-    }
     .highlight-box {
         background-color: #f0f9ff;
         padding: 15px;
         border-radius: 10px;
         border: 1px solid #add8e6;
+        margin-bottom: 15px;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# INPUT FORM
-st.markdown("<div class='highlight-box'><b>Masukkan data pribadi kamu untuk menghitung kebutuhan air harian:</b></div>", unsafe_allow_html=True)
+# FORM input dengan gaya lucu
+st.markdown("<div class='highlight-box'><b>Isi dulu datanya yaa, biar tahu kamu butuh berapa galon! 😄</b></div>", unsafe_allow_html=True)
+
 berat = st.number_input("⚖ Berat badan kamu (kg):", min_value=1.0, step=0.5)
-aktivitas = st.selectbox("🏃 Tingkat aktivitas:", ["Ringan", "Sedang", "Berat"])
-cuaca = st.selectbox("🌦 Kondisi cuaca saat ini:", ["Dingin", "Normal", "Panas"])
-jenis_kelamin = st.selectbox("🚻 Jenis kelamin:", ["Pria", "Wanita"])
-usia = st.number_input("🎂 Usia kamu:", min_value=1, max_value=120, step=1)
+aktivitas = st.selectbox("💃 Seberapa aktif kamu hari ini?", ["Mager Banget 😴", "Cukup Gerak 🧘", "Lari Kejar Bus 🏃‍♂️💨"])
+cuaca = st.selectbox("☀️ Cuaca di luar gimana?", ["❄️ Dingin Brrrr", "🌤 Normal Aja", "🔥 Panas Terik!"])
+jenis_kelamin = st.selectbox("🚻 Jenis kelamin kamu apa?", ["👦 Cowok", "👧 Cewek"])
+usia = st.number_input("🎂 Umur kamu (biar nggak salah ngitung):", min_value=1, max_value=120, step=1)
 
-# PERHITUNGAN
+# Fungsi perhitungan lucu
 def hitung_air(berat, aktivitas, cuaca, jenis_kelamin, usia):
-    dasar = berat * 30  # WHO: 30 ml per kg
+    dasar = berat * 30
 
-    if aktivitas == "Sedang":
+    if aktivitas == "Cukup Gerak 🧘":
         dasar += 300
-    elif aktivitas == "Berat":
+    elif aktivitas == "Lari Kejar Bus 🏃‍♂️💨":
         dasar += 600
 
-    if cuaca == "Panas":
+    if cuaca == "🔥 Panas Terik!":
         dasar += 400
-    elif cuaca == "Dingin":
+    elif cuaca == "❄️ Dingin Brrrr":
         dasar -= 200
 
-    if jenis_kelamin == "Pria":
+    if jenis_kelamin == "👦 Cowok":
         dasar += 200
     else:
         dasar -= 100
@@ -72,52 +71,38 @@ def hitung_air(berat, aktivitas, cuaca, jenis_kelamin, usia):
     if usia < 18:
         dasar -= 300
 
-    return dasar / 1000  # Konversi ke liter
+    return dasar / 1000
 
-# HASIL
-if st.button("💦 Hitung Kebutuhan Air"):
-    if berat and berat > 0:
+# Tombol dan hasil perhitungan
+if st.button("🧃 Hitung Berapa Kamu Harus Minum Hari Ini!"):
+    if berat > 0:
         total = hitung_air(berat, aktivitas, cuaca, jenis_kelamin, usia)
-        st.markdown(f"<h3 style='color: #007ACC;'>🌊 Kamu butuh sekitar <span style='color:#FF4500;'>{total:.2f} liter</span> air per hari!</h3>", unsafe_allow_html=True)
+        st.markdown(f"<h3 style='color: #ff69b4;'>🚰 Kamu butuh minum sekitar <span style='color:#1e90ff;'>{total:.2f} liter</span> air hari ini! 🍹</h3>", unsafe_allow_html=True)
 
-        # KATEGORI REKOMENDASI
         if total < 1.5:
-            st.markdown("<div class='highlight-box' style='background-color:#fff8f0; border-color:#f0cba8;'>⚠ <b>Rendah:</b> Tambahkan lebih banyak air saat beraktivitas.</div>", unsafe_allow_html=True)
-        elif total >= 1.5 and total < 2.5:
-            st.markdown("<div class='highlight-box' style='background-color:#f0fff0; border-color:#a0d6b4;'>✅ <b>Cukup:</b> Pertahankan kebiasaan hidrasi kamu.</div>", unsafe_allow_html=True)
+            st.markdown("<div class='highlight-box' style='background-color:#fff0f0;'>🥵 <b>Kurang banget!</b> Minum lagi, kamu kayak daun kering!</div>", unsafe_allow_html=True)
+        elif total < 2.5:
+            st.markdown("<div class='highlight-box' style='background-color:#f0fff0;'>😎 <b>Cukup!</b> Tetap jaga kebiasaan minummu yaa!</div>", unsafe_allow_html=True)
         else:
-            st.markdown("<div class='highlight-box' style='background-color:#e6f7ff; border-color:#8acde3;'>💪 <b>Tinggi:</b> Sangat aktif? Pastikan kamu bawa botol ke mana pun!</div>", unsafe_allow_html=True)
+            st.markdown("<div class='highlight-box' style='background-color:#e0f7ff;'>💪 <b>Hidrasi Sultan!</b> Kamu aktif banget, keren! Bawa botol air terus ya!</div>", unsafe_allow_html=True)
 
-        # INFO ILMIAH
-        st.markdown("<h4 style='color:#20B2AA;'>📘 Dasar Ilmiah:</h4>", unsafe_allow_html=True)
+        # Tips lucu
+        st.markdown("<h4 style='color:#20B2AA;'>✨ Tips dari para pinguin profesional:</h4>", unsafe_allow_html=True)
         st.markdown("""
         <div class='highlight-box'>
             <ul>
-                <li>Rata-rata kebutuhan air: <b>30–35 ml/kg berat badan per hari</b> (sumber: WHO & EFSA).</li>
-                <li><b>Cuaca panas</b> dan <b>aktivitas fisik tinggi</b> meningkatkan kehilangan cairan lewat keringat.</li>
-                <li><b>Pria</b> cenderung membutuhkan lebih banyak air karena proporsi massa otot yang lebih tinggi.</li>
-                <li><b>Anak-anak</b> butuh lebih sedikit air, kecuali mereka sangat aktif.</li>
-            </ul>
-        </div>
-        """, unsafe_allow_html=True)
-
-        # TIPS HIDRASI
-        st.markdown("<h4 style='color:#FF69B4;'>✨ Tips Hidrasi Sehat:</h4>", unsafe_allow_html=True)
-        st.markdown("""
-        <div class='highlight-box'>
-            <ul>
-                <li>🕗 Minum segelas air segera setelah bangun tidur.</li>
-                <li>🥗 Konsumsi buah tinggi air seperti <b>semangka, melon, dan jeruk</b>.</li>
-                <li>⏰ Gunakan aplikasi pengingat minum secara berkala.</li>
-                <li>🧊 Minum air dingin saat cuaca panas untuk menyegarkan tubuh.</li>
-                <li>🚰 Selalu bawa <b>tumbler</b> ke mana pun kamu pergi.</li>
+                <li>🐣 Minum segelas air setelah bangun tidur biar nggak ngelantur.</li>
+                <li>🍉 Makan buah-buahan berair seperti semangka dan jeruk, biar pipimu makin segar!</li>
+                <li>⏰ Pasang alarm minum biar nggak lupa pas scroll TikTok terus.</li>
+                <li>🚰 Bawa botol lucu ke mana pun, biar gayamu makin kece & sehat!</li>
             </ul>
         </div>
         """, unsafe_allow_html=True)
     else:
-        st.warning("Masukkan berat badan yang valid terlebih dahulu.")
+        st.warning("Masukkan berat badan yang valid dulu yaa~")
 
-# FOOTER
+# FOOTER lucu
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: grey;'>Proyek Streamlit oleh: <b>IFTA, NADILA, VANIA, DAVIONA, SULTHAN</b></p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: grey;'>🐬 Dibuat oleh tim <b>Hydra Squad™</b> yang haus ide & air 💡💧</p>", unsafe_allow_html=True)
+
 
