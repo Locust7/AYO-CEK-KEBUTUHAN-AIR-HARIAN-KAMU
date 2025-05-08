@@ -3,7 +3,7 @@ import streamlit as st
 # Konfigurasi halaman
 st.set_page_config(page_title="🐧 Kalkulator Minum Air Harian Lucu", layout="centered")
 
-# Background tema air
+# Background tema air minum gelas
 st.markdown(
     """
     <style>
@@ -40,7 +40,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# FORM input dengan gaya lucu
+# FORM input
 st.markdown("<div class='highlight-box'><b>Isi dulu datanya yaa, biar tahu kamu butuh berapa galon! 😄</b></div>", unsafe_allow_html=True)
 
 berat = st.number_input("⚖ Berat badan kamu (kg):", min_value=1.0, step=0.5)
@@ -99,10 +99,11 @@ if st.button("🧃 Hitung Berapa Kamu Harus Minum Hari Ini!"):
         </div>
         """, unsafe_allow_html=True)
     else:
-        st.warning("Masukkan berat badan yang valid dulu yaa jangan bohongg~")
+        st.warning("⚠️ Masukkan berat badan yang valid dulu yaa jangan bohongg~")
 
 # FOOTER lucu
 st.markdown("---")
 st.markdown("<p style='text-align: center; color: grey;'>🐬 Dibuat oleh tim <b>LPK 7 Daviona, Ifta, Nadila, Vania, Sulthan</b> yang haus ide & air 💡💧</p>", unsafe_allow_html=True)
+
 
 
