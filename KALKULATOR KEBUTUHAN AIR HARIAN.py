@@ -1,25 +1,32 @@
-# Tambahkan latar belakang menggunakan CSS
+import streamlit as st
+
+st.set_page_config(page_title="💧 Kalkulator Kebutuhan Air Harian", layout="centered")
+
+# Tambahkan background gambar bertema air
 st.markdown(
     """
     <style>
     .stApp {
-        background-image: url("https://images.unsplash.com/photo-1505740420928-5e560c06d30e");
+        background-image: url("https://images.unsplash.com/photo-1501594907352-04cda38ebc29");
         background-size: cover;
         background-attachment: fixed;
+        background-position: center;
+    }
+    .block-container {
+        background-color: rgba(255, 255, 255, 0.85);
+        padding: 2rem;
+        border-radius: 15px;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-import streamlit as st
-
-st.set_page_config(page_title="💧 Kalkulator Kebutuhan Air Harian", layout="centered")
-
 # HEADER
 st.markdown("<h1 style='text-align: center; color: #00BFFF;'>💧 Kalkulator Kebutuhan Air Harian</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; font-size: 18px;'>Tentukan berapa liter air yang kamu butuhkan setiap hari agar tetap sehat dan bertenaga!</p>", unsafe_allow_html=True)
 
+# STYLE TAMBAHAN
 st.markdown("""
 <style>
     .big-font {
@@ -42,6 +49,7 @@ aktivitas = st.selectbox("🏃 Tingkat aktivitas:", ["Ringan", "Sedang", "Berat"
 cuaca = st.selectbox("🌦 Kondisi cuaca saat ini:", ["Dingin", "Normal", "Panas"])
 jenis_kelamin = st.selectbox("🚻 Jenis kelamin:", ["Pria", "Wanita"])
 usia = st.number_input("🎂 Usia kamu:", min_value=1, max_value=120, step=1)
+
 # PERHITUNGAN
 def hitung_air(berat, aktivitas, cuaca, jenis_kelamin, usia):
     dasar = berat * 30  # WHO: 30 ml per kg
@@ -71,7 +79,8 @@ if st.button("💦 Hitung Kebutuhan Air"):
     if berat and berat > 0:
         total = hitung_air(berat, aktivitas, cuaca, jenis_kelamin, usia)
         st.markdown(f"<h3 style='color: #007ACC;'>🌊 Kamu butuh sekitar <span style='color:#FF4500;'>{total:.2f} liter</span> air per hari!</h3>", unsafe_allow_html=True)
-  # KATEGORI REKOMENDASI
+
+        # KATEGORI REKOMENDASI
         if total < 1.5:
             st.markdown("<div class='highlight-box' style='background-color:#fff8f0; border-color:#f0cba8;'>⚠ <b>Rendah:</b> Tambahkan lebih banyak air saat beraktivitas.</div>", unsafe_allow_html=True)
         elif total >= 1.5 and total < 2.5:
@@ -92,7 +101,7 @@ if st.button("💦 Hitung Kebutuhan Air"):
         </div>
         """, unsafe_allow_html=True)
 
-  # TIPS HIDRASI
+        # TIPS HIDRASI
         st.markdown("<h4 style='color:#FF69B4;'>✨ Tips Hidrasi Sehat:</h4>", unsafe_allow_html=True)
         st.markdown("""
         <div class='highlight-box'>
@@ -111,3 +120,4 @@ if st.button("💦 Hitung Kebutuhan Air"):
 # FOOTER
 st.markdown("---")
 st.markdown("<p style='text-align: center; color: grey;'>Proyek Streamlit oleh: <b>IFTA, NADILA, VANIA, DAVIONA, SULTHAN</b></p>", unsafe_allow_html=True)
+
