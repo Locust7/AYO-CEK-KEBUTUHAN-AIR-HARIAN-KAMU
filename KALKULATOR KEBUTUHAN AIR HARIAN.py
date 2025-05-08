@@ -8,7 +8,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-image: url("https://unsplash.com/photos/clear-drinking-glass-on-white-table-rCzy18K9hq0?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash");
+        background-image: url("https://images.unsplash.com/photo-1588099761196-35e57a4a1a2b");
         background-size: cover;
         background-attachment: fixed;
         background-position: center;
