@@ -31,7 +31,7 @@ st.markdown("<p style='text-align: center; font-size: 18px;'>Biar nggak jadi kak
 st.markdown("""
 <style>
     .highlight-box {
-        background-color: #f0f9ff;
+        background-color: #31adff;
         padding: 15px;
         border-radius: 10px;
         border: 1px solid #add8e6;
@@ -44,7 +44,7 @@ st.markdown("""
 st.markdown("<div class='highlight-box'><b>Isi dulu datanya yaa, biar tahu kamu butuh berapa galon! 😄</b></div>", unsafe_allow_html=True)
 
 berat = st.number_input("⚖ Berat badan kamu (kg):", min_value=1.0, step=0.5)
-aktivitas = st.selectbox("💃 Seberapa aktif kamu hari ini?", ["Gamau kerjain laprak 😴", "Cukup banyak praktik 🧘", "Lari Kejar deadline laprak 🏃‍♂️💨"])
+aktivitas = st.selectbox("💃 Seberapa aktif kamu hari ini?", ["Hari ini cuma matkul teori 😴", "Cukup banyak praktik 🧘", "Lari Kejar deadline laprak 🏃‍♂️💨"])
 cuaca = st.selectbox("☀️ Cuaca di luar gimana?", ["❄️ Dingin Brrrr", "🌤 Normal Aja", "🔥 Panas Terik!"])
 jenis_kelamin = st.selectbox("🚻 Jenis kelamin kamu apa?", ["👦 Laki-laki", "👧 Perempuan"])
 usia = st.number_input("🎂 Umur kamu (biar nggak salah ngitung):", min_value=1, max_value=120, step=1)
