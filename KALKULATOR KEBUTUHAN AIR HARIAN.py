@@ -8,7 +8,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-image: url("https://pin.it/3CwNVXRTU");
+        background-image: url("https://www.freepik.com/free-photo/woman-drinking-water-after-exercise_21802925.htm#fromView=search&page=1&position=49&uuid=0aa4a1cc-beb6-4110-b3b8-1f5f9414766c&query=drink+water");
         background-size: cover;
         background-attachment: fixed;
         background-position: center;
