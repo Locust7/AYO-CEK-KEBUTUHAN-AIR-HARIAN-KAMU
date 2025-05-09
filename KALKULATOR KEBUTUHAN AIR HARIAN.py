@@ -1,109 +1,119 @@
 import streamlit as st
+import matplotlib.pyplot as plt
+import time
 
 # Konfigurasi halaman
-st.set_page_config(page_title="🐧 Kalkulator Minum Air Harian Lucu", layout="centered")
+st.set_page_config(page_title="💧 Kalkulator Kebutuhan Air Lucu", layout="centered")
 
-# Background tema air minum gelas
+# Tambahkan latar belakang bergambar air minum
 st.markdown(
-    """
+    f"""
     <style>
-    .stApp {
-        background-image: url("https://www.freepik.com/free-photo/woman-drinking-water-after-exercise_21802925.htm#fromView=search&page=1&position=49&uuid=0aa4a1cc-beb6-4110-b3b8-1f5f9414766c&query=drink+water");
+    .stApp {{
+        background-image: url('https://images.unsplash.com/photo-1589467235304-46069d5a3a4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1650&q=80');
         background-size: cover;
         background-attachment: fixed;
-        background-position: center;
-    }
-    .block-container {
-        background-color: rgba(255, 255, 255, 0.88);
+    }}
+    .block-container {{
+        background-color: rgba(255, 255, 255, 0.90);
         padding: 2rem;
         border-radius: 15px;
-    }
+    }}
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# HEADER lucu
-st.markdown("<h1 style='text-align: center; color: #00CFFF;'>🐧💦 Berapa Banyak Air yang Harus Kamu Minum Hari Ini?</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; font-size: 18px;'>Biar nggak jadi kaktus kering, yuk hitung kebutuhan air kamu hari ini! 🌵➡️💧</p>", unsafe_allow_html=True)
-
-# Gaya tambahan
+# Header
 st.markdown("""
-<style>
-    .highlight-box {
-        background-color: #31adff;
-        padding: 15px;
-        border-radius: 10px;
-        border: 1px solid #add8e6;
-        margin-bottom: 15px;
-    }
-</style>
+    <h1 style='text-align: center; color: #00BFFF;'>💧🐧 Kalkulator Kebutuhan Air Harian Lucu 🥤🍉</h1>
+    <p style='text-align: center;'>Yuk hitung berapa banyak kamu harus minum biar nggak jadi kaktus! 🌵➡💦</p>
 """, unsafe_allow_html=True)
 
-# FORM input
-st.markdown("<div class='highlight-box'><b>Isi dulu datanya yaa, biar tahu kamu butuh berapa galon! 😄</b></div>", unsafe_allow_html=True)
+# Penjelasan awal
+st.markdown("""
+Kalkulator ini membantu kamu memperkirakan kebutuhan air harian berdasarkan:
+- 🎂 *Umur*
+- 🚻 *Jenis kelamin*
+- ⚖ *Berat badan*
+- 🤸 *Aktivitas fisik*
+- ☀ *Iklim tempat tinggal*
+""")
 
-berat = st.number_input("⚖ Berat badan kamu (kg):", min_value=1.0, step=0.5)
-aktivitas = st.selectbox("💃 Seberapa aktif kamu hari ini?", ["Hari ini cuma matkul teori 😴", "Cukup banyak praktik 🧘", "Lari Kejar deadline laprak 🏃‍♂️💨"])
-cuaca = st.selectbox("☀️ Cuaca di luar gimana?", ["❄️ Dingin Brrrr", "🌤 Normal Aja", "🔥 Panas Terik!"])
-jenis_kelamin = st.selectbox("🚻 Jenis kelamin kamu apa?", ["👦 Laki-laki", "👧 Perempuan"])
-usia = st.number_input("🎂 Umur kamu (biar nggak salah ngitung):", min_value=1, max_value=120, step=1)
+# Form input
+with st.form("form_air"):
+    umur = st.number_input("🎂 Umur (tahun)", min_value=0, max_value=120, value=25)
+    jenis_kelamin = st.selectbox("🚻 Jenis Kelamin", ["👦 Laki-laki", "👧 Perempuan"])
+    berat_badan = st.number_input("⚖ Berat Badan (kg)", min_value=1.0, max_value=200.0, value=60.0)
 
-# Fungsi perhitungan lucu
-def hitung_air(berat, aktivitas, cuaca, jenis_kelamin, usia):
-    dasar = berat * 30
+    aktivitas = st.selectbox("🤸 Tingkat Aktivitas Fisik", [
+        "Ringan (pekerjaan ringan, sedikit olahraga)",
+        "Sedang (olahraga 3–5 kali/minggu)",
+        "Berat (olahraga intens atau pekerjaan berat)"
+    ])
 
-    if aktivitas == "Cukup banyak praktik 🧘":
-        dasar += 300
-    elif aktivitas == "Lari Kejar deadline laprak 🏃‍♂️💨":
-        dasar += 600
+    iklim = st.selectbox("☀ Iklim Tempat Tinggal", [
+        "Sedang/Dingin",
+        "Panas (tropis, kering, atau sangat lembap)"
+    ])
 
-    if cuaca == "🔥 Panas Terik!":
-        dasar += 400
-    elif cuaca == "❄️ Dingin Brrrr":
-        dasar -= 200
+    submitted = st.form_submit_button("🚰 Hitung Kebutuhan Air!")
 
-    if jenis_kelamin == "👦 Laki-laki":
-        dasar += 200
-    else:
-        dasar -= 100
+# Proses perhitungan
+if submitted:
+    with st.spinner("⏳ Menghitung kebutuhan air harian kamu..."):
+        time.sleep(1.5)
 
-    if usia < 18:
-        dasar -= 300
+        # Dasar
+        kebutuhan_dasar_min = 30 * berat_badan / 1000
+        kebutuhan_dasar_max = 40 * berat_badan / 1000
 
-    return dasar / 1000
+        # Aktivitas
+        faktor_aktivitas = 1.1 if aktivitas.startswith("Ringan") else 1.25 if aktivitas.startswith("Sedang") else 1.35
 
-# Tombol dan hasil perhitungan
-if st.button("🧃 Hitung Berapa Kamu Harus Minum Hari Ini!"):
-    if berat > 0:
-        total = hitung_air(berat, aktivitas, cuaca, jenis_kelamin, usia)
-        st.markdown(f"<h3 style='color: #ff69b4;'>🚰 Kamu butuh minum sekitar <span style='color:#1e90ff;'>{total:.2f} liter</span> air hari ini! 🍹</h3>", unsafe_allow_html=True)
+        # Iklim
+        faktor_iklim = 1.1 if iklim.startswith("Panas") else 1.0
 
-        if total < 1.5:
-            st.markdown("<div class='highlight-box' style='background-color:#fff0f0;'>🥵 <b>Kurang banget!</b> Minum lagi, kamu kayak daun kering!</div>", unsafe_allow_html=True)
-        elif total < 2.5:
-            st.markdown("<div class='highlight-box' style='background-color:#f0fff0;'>😎 <b>Cukup!</b> Tetap jaga kebiasaan minummu yaa!</div>", unsafe_allow_html=True)
-        else:
-            st.markdown("<div class='highlight-box' style='background-color:#e0f7ff;'>💪 <b>Hidrasi Sultan!</b> Kamu aktif banget, keren! Bawa botol air terus ya!</div>", unsafe_allow_html=True)
+        # Total
+        kebutuhan_total_min = kebutuhan_dasar_min * faktor_aktivitas * faktor_iklim
+        kebutuhan_total_max = kebutuhan_dasar_max * faktor_aktivitas * faktor_iklim
 
-        # Tips lucu
-        st.markdown("<h4 style='color:#20B2AA;'>✨ Tips dari para profesional H2Oni:</h4>", unsafe_allow_html=True)
+        # Output
+        st.success("🎉 Perhitungan selesai!")
+        st.subheader("💡 Hasil Perkiraan Kamu:")
+        st.write(f"- 💧 Kebutuhan dasar: *{kebutuhan_dasar_min:.2f} - {kebutuhan_dasar_max:.2f} L/hari*")
+        st.write(f"- 🔄 Setelah penyesuaian: *{kebutuhan_total_min:.2f} - {kebutuhan_total_max:.2f} L/hari*")
+
+        # Catatan tambahan
         st.markdown("""
-        <div class='highlight-box'>
-            <ul>
-                <li>🐣 Minum segelas air setelah bangun tidur biar nggak ngelantur pas praktik.</li>
-                <li>🍉 Makan buah-buahan berair seperti semangka dan jeruk, biar pipimu makin segar!</li>
-                <li>⏰ Pasang alarm minum biar nggak lupa pas lagi kerjain laprak.</li>
-                <li>🚰 Bawa botol tumblr ke mana pun, agar mengurangi limbah plastik!</li>
-            </ul>
+        <div style='background-color:#e6f7ff; padding:10px; border-left:5px solid #00BFFF;'>
+            📌 <strong>Catatan:</strong><br>
+            Nilai ini merupakan estimasi kebutuhan air harian. Kebutuhan sebenarnya bisa bervariasi tergantung kondisi kesehatan, konsumsi makanan dan minuman lain, serta cuaca harian. Konsultasikan dengan ahli gizi atau tenaga medis untuk kebutuhan spesifik.
         </div>
         """, unsafe_allow_html=True)
-    else:
-        st.warning("⚠️ Masukkan berat badan yang valid dulu yaa jangan bohongg~")
 
-# FOOTER lucu
-st.markdown("---")
-st.markdown("<p style='text-align: center; color: grey;'>🐬 Dibuat oleh tim <b>LPK 7 Daviona, Ifta, Nadila, Vania, Sulthan</b> yang haus ide & air 💡💧</p>", unsafe_allow_html=True)
+        # Grafik
+        st.subheader("📊 Visualisasi Kebutuhan Air")
+        fig, ax = plt.subplots()
+        kategori = ['Min (Dasar)', 'Max (Dasar)', 'Min (Total)', 'Max (Total)']
+        nilai = [kebutuhan_dasar_min, kebutuhan_dasar_max, kebutuhan_total_min, kebutuhan_total_max]
+        warna = ['skyblue', 'dodgerblue', 'lightgreen', 'green']
+        ax.bar(kategori, nilai, color=warna)
+        ax.set_ylabel('Liter per Hari')
+        ax.set_title('💦 Kebutuhan Air Harian')
+        st.pyplot(fig)
 
+        # Tips lucu
+        st.info("🧊 Tips: Minumlah air secara bertahap sepanjang hari, jangan sekaligus kayak minum sirup waktu buka puasa! 😆")
+
+# Watermark stylist
+st.markdown("""
+    <hr>
+    <p style='text-align: center; font-size: 16px; color: grey;'>
+    🐬 Dibuat oleh <strong>LPK 7</strong> dengan cinta 💙:<br>
+    <b>Daviona ✨, Ifta 🧋, Nadila 🎀, Vania 🌸, Sulthan 🎩</b><br>
+    <i>Tim paling segar di antara deadline! 🍹</i>
+    </p>
+""", unsafe_allow_html=True)
 
 
